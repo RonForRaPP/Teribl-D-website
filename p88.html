@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>Teribl D</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="background-image"></div>
+
+    <div class="modal">
+        <button id="close">&times;</button>
+        <img src="styles/images/popupcongratsch2_adjusted.png" width="50%" height="50%">
+    </div>
+
+    <style>
+        .background-image {
+            background-image: url(styles/images/p88_adjusted.png);
+        }
+    </style>
+
+    <script>
+        window.addEventListener("load", function(){
+            setTimeout(
+                function open (event){
+                    document.querySelector(".modal").style.
+                    display = "block"
+                },
+                2000
+            )
+        });
+
+        document.querySelector("#close").addEventListener
+        ("click", function(){
+            document.querySelector(".modal").style.display = 
+            "none";
+        });
+
+        document.addEventListener("keydown", (ev) => {
+
+        if (ev.keyCode == "13") {
+            if (ev.keyCode == "13") document.querySelector(".modal").style.display = 
+            "none";
+            console.log("Enter was pressed.")
+            }
+        });
+
+        document.addEventListener("keydown", (ev) => {
+            if (ev.keyCode == "39") {
+                if (ev.keyCode == "39") window.location.href = 'p89.html'
+                console.log("Right arrow was pressed.")
+            }
+            if (ev.keyCode == "37") {
+                if (ev.keyCode == "37") window.location.href = 'p87.html'
+                console.log("Left arrow was pressed.")
+            }
+            if (ev.keyCode == "38") {
+                if (ev.keyCode == "38") window.location.href = 'p63.html'
+                console.log("Up arrow was pressed.")
+            }
+            if (ev.keyCode == "40") {
+                if (ev.keyCode == "40") window.location.href = 'p89.html'
+                console.log("Down arrow was pressed.")
+            }
+        });
+
+        document.addEventListener('touchstart', handleTouchStart, false);
+        document.addEventListener('touchmove', handleTouchMove, false);
+
+        var xDown = null;
+        var yDown = null;
+
+        function getTouches(evt){
+            return evt.touches ||
+            evt.originalEvent.touches;
+        }
+
+        function handleTouchStart(evt){
+            const firstTouch = getTouches(evt)[0];
+            xDown = firstTouch.clientX;
+            yDown = firstTouch.clientY;
+        };
+
+        function handleTouchMove(evt){
+            if (! xDown || ! yDown){
+                return;
+            }
+
+            var xUp = evt.touches[0].clientX;
+            var yUp = evt.touches[0].clientY;
+
+            var xDiff = xDown - xUp;
+            var yDiff = yDown - yUp;
+
+            if (Math.abs(xDiff) > Math.abs(yDiff)){
+                if (xDiff > 0){
+                    if (xDiff > 0) window.location.href = 'p89.html'
+                    console.log("Swipe right.")
+                } else {
+                    if (xDiff < 0) window.location.href = 'p87.html'
+                    console.log("Swipe left.")
+                }
+            } else {
+                if (yDiff > 0){
+                    if (yDiff > 0) window.location.href = 'p89.html'
+                    console.log("Swipe down.")
+                } else {
+                    if (yDiff < 0) window.location.href = 'p63.html'
+                    console.log("Swipe up.")
+                }
+            }
+
+            xDown = null;
+            yDown = null;
+        };
+    </script>
+</body>
+</html>
